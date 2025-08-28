@@ -9,6 +9,7 @@ from django.views import generic
 from .models import Choice, Question
 from django.utils import timezone
 from django.urls import reverse
+from django.test import TestCase
 
 
 def index(request):
@@ -106,7 +107,7 @@ class QuestionIndexViewTests(TestCase):
         url = reverse("polls:detail", args=(past_question.id,))
         response = self.client.get(url)
         self.assertContains(response, past_question.question_text)
-        
+
     def test_future_question(self):
         """
         The detail view of a question with a pub_date in the future
